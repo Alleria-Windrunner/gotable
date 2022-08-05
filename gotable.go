@@ -8,9 +8,9 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/liushuochen/gotable/exception"
-	"github.com/liushuochen/gotable/table"
-	"github.com/liushuochen/gotable/util"
+	"github.com/Alleria-Windrunner/gotable/exception"
+	"github.com/Alleria-Windrunner/gotable/table"
+	"github.com/Alleria-Windrunner/gotable/util"
 )
 
 const (

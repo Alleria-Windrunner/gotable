@@ -3,8 +3,8 @@ package table
 import (
 	"sync"
 
-	"github.com/liushuochen/gotable/cell"
-	"github.com/liushuochen/gotable/exception"
+	"github.com/Alleria-Windrunner/gotable/cell"
+	"github.com/Alleria-Windrunner/gotable/exception"
 )
 
 type SafeTable struct {

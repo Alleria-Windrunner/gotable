@@ -8,8 +8,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
-	"github.com/liushuochen/gotable/exception"
+	"github.com/Alleria-Windrunner/gotable"
+	"github.com/Alleria-Windrunner/gotable/exception"
 )
 
 func main() {

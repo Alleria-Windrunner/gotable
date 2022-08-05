@@ -1,8 +1,8 @@
 package cell
 
 import (
-	"github.com/liushuochen/gotable/color"
-	"github.com/liushuochen/gotable/util"
+	"github.com/Alleria-Windrunner/gotable/color"
+	"github.com/Alleria-Windrunner/gotable/util"
 )
 
 const (

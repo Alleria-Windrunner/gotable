@@ -7,9 +7,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/liushuochen/gotable/cell"
-	"github.com/liushuochen/gotable/exception"
-	"github.com/liushuochen/gotable/util"
+	"github.com/Alleria-Windrunner/gotable/cell"
+	"github.com/Alleria-Windrunner/gotable/exception"
+	"github.com/Alleria-Windrunner/gotable/util"
 )
 
 const (

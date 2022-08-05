@@ -7,7 +7,7 @@ This section describes the gotable APIs.
 
 
 
-## github.com/liushuochen/gotable
+## github.com/Alleria-Windrunner/gotable
 
 ### Create a simple table
 ```go

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -33,12 +33,12 @@ func main() {
 		return
 	}
 
-	// row3 := []string{"+", "+", "+"}
-	// err = table.AddRow(row3)
-	// if err != nil {
-	// 	fmt.Println("Add value to table failed: ", err.Error())
-	// 	return
-	// }
+	row4 := []string{"=", "~", "+"}
+	err = table.AddRow(row4)
+	if err != nil {
+		fmt.Println("Add value to table failed: ", err.Error())
+		return
+	}
 
 	// Add new part with new columns
 	table.AddPart("name", "salary")
@@ -71,7 +71,7 @@ func main() {
 	}
 	table.AddRows(rows)
 
-	table.SetBorder(4) //0" " 1"-" 2"=" 3"~" 4"+"
+	table.SetBorder(1) //0" " 1"-" 2"=" 3"~" 4"+"
 
 	//get columns and maps in specific part
 	fmt.Println(table.GetPNColumns(1))

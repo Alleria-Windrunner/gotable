@@ -13,7 +13,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -35,7 +35,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 type Student struct {
@@ -63,7 +63,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -95,7 +95,7 @@ package main
 
 import (
   "fmt"
-  "github.com/liushuochen/gotable"
+  "github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -148,7 +148,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -192,7 +192,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -244,7 +244,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -302,7 +302,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -362,7 +362,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -391,7 +391,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -418,7 +418,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -445,7 +445,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -486,7 +486,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -529,7 +529,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -554,7 +554,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -579,7 +579,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -615,7 +615,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -663,7 +663,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -704,7 +704,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -769,7 +769,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -824,7 +824,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -881,7 +881,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -918,7 +918,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -973,7 +973,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -1031,7 +1031,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 type Stu struct {
@@ -1064,7 +1064,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -1112,7 +1112,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -1149,7 +1149,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -1174,7 +1174,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {
@@ -1212,7 +1212,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/liushuochen/gotable"
+	"github.com/Alleria-Windrunner/gotable"
 )
 
 func main() {

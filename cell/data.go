@@ -1,7 +1,7 @@
 package cell
 
 import (
-	"github.com/liushuochen/gotable/util"
+	"github.com/Alleria-Windrunner/gotable/util"
 )
 
 type Data struct {

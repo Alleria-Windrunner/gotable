@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/liushuochen/gotable/cell"
+	"github.com/Alleria-Windrunner/gotable/cell"
 )
 
 // This method print part of table data in STDOUT. It will be called twice in *table.PrintTable method.
