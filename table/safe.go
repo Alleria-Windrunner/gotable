@@ -24,10 +24,14 @@ func CreateSafeTable(set *Set) *SafeTable {
 func (s *SafeTable) Clear() {
 	if s.partLen != 1 {
 		s.Columns = append(s.Columns[0:1])
+		s.columntag = append(s.columntag[0:1])
+		s.ColumnMaxLengths = append(s.ColumnMaxLengths[0:1])
 		s.Rows = append(s.Rows[0:1])
 		s.partLen = 1
 	}
 	s.Columns[0].Clear()
+	s.columntag[0] = true
+	s.ColumnMaxLengths[0] = make(map[string]int, 0)
 	s.Rows[0] = make([]sync.Map, 0)
 }
 

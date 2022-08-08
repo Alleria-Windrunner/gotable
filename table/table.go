@@ -43,9 +43,13 @@ func (tb *Table) Clear() {
 	if tb.partLen != 1 {
 		tb.Columns = append(tb.Columns[0:1])
 		tb.Rows = append(tb.Rows[0:1])
+		tb.columntag = append(tb.columntag[0:1])
+		tb.ColumnMaxLengths = append(tb.ColumnMaxLengths[0:1])
 		tb.partLen = 1
 	}
 	tb.Columns[0].Clear()
+	tb.columntag[0] = true
+	tb.ColumnMaxLengths[0] = make(map[string]int, 0)
 	tb.Rows[0] = make([]map[string]cell.Cell, 0)
 }
 
@@ -213,7 +217,7 @@ func (tb *Table) String() string {
 			if length, exist := tb.ColumnMaxLengths[pn][h.Original()]; !(exist && length > h.Length()) {
 				tb.ColumnMaxLengths[pn][h.Original()] = h.Length()
 			}
-			fmt.Println(h.Original(), tb.ColumnMaxLengths[pn][h.Original()], h.Length())
+			//fmt.Println(h.Original(), tb.ColumnMaxLengths[pn][h.Original()], h.Length())
 			tag[h.String()] = cell.CreateData(border)
 		}
 	}
