@@ -183,6 +183,21 @@ func (tb *Table) AddRows(rows []map[string]string) []map[string]string {
 	return failure
 }
 
+func (tb *Table) DelPNRows(partNumber int) error {
+	if partNumber >= tb.partLen {
+		return exception.PartNumber(tb.partLen)
+	}
+	if len(tb.Rows[partNumber]) == 0 {
+		return exception.NoMoreRow(partNumber)
+	}
+	tb.Rows[partNumber] = tb.Rows[partNumber][:len(tb.Rows[partNumber])-1]
+	return nil
+}
+
+func (tb *Table) DelRows() error {
+	return tb.DelPNRows(tb.partLen - 1)
+}
+
 func (tb *Table) SetColumnMaxLength(partNumber int, column string, maxlength int) error {
 	if partNumber >= tb.partLen {
 		return exception.PartNumber(tb.partLen)

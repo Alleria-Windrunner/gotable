@@ -1,6 +1,8 @@
 package exception
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type UnsupportedRowTypeError struct {
 	*baseError
@@ -33,6 +35,18 @@ func RowLengthNotEqualColumns(rowLength, columnLength int) *RowLengthNotEqualCol
 		baseError:    createBaseError(message),
 		rowLength:    rowLength,
 		columnLength: columnLength,
+	}
+	return err
+}
+
+type NoMoreRowError struct {
+	*baseError
+}
+
+func NoMoreRow(pn int) *NoMoreRowError {
+	message := fmt.Sprintf("The part(%d) has no more row", pn)
+	err := &NoMoreRowError{
+		baseError: createBaseError(message),
 	}
 	return err
 }
