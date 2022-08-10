@@ -481,6 +481,13 @@ func (tb *Table) XML(indent int) string {
 
 func (tb *Table) updatePNColLen(pn int) int {
 	row := tb.Rows[pn]
+	columns := tb.Columns[pn]
+	for _, h := range columns.base {
+		if length, exist := tb.ColumnMaxLengths[pn][h.Original()]; !(exist && length > h.Length()) {
+			tb.ColumnMaxLengths[pn][h.Original()] = h.Length()
+		}
+	}
+
 	for _, data := range row {
 		for _, h := range tb.Columns[pn].base {
 			maxLength := max(h.Length(), data[h.Original()].Length())
