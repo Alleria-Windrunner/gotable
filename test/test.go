@@ -40,6 +40,8 @@ func main() {
 		return
 	}
 
+	table.SetPNColumnsTag(0, false)
+
 	// Add new part with new columns
 	table.AddPart("name", "salary")
 
@@ -70,6 +72,8 @@ func main() {
 		rows = append(rows, row)
 	}
 	table.AddRows(rows)
+	table.DelRows()
+	table.DelPNRows(0)
 
 	table.SetBorder(1) //0" " 1"-" 2"=" 3"~" 4"+"
 
@@ -82,6 +86,7 @@ func main() {
 	table.SetColumnMaxLength(1, "salary", 14)
 	table.SetColumnMaxLength(2, "name", 20)
 	table.SetColumnMaxLength(2, "salary", 7)
+	table.AdaptColLen(1, 2, "salary")
 
 	fmt.Println(table)
 

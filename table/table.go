@@ -238,15 +238,8 @@ func (tb *Table) String() string {
 	}
 
 	//confirm the maxLength
-	for pn, row := range tb.Rows {
-		for _, data := range row {
-			for _, h := range tb.Columns[pn].base {
-				maxLength := max(h.Length(), data[h.Original()].Length())
-				maxLength = max(maxLength, tb.ColumnMaxLengths[pn][h.Original()])
-				tb.ColumnMaxLengths[pn][h.Original()] = maxLength
-				//fmt.Println(h.Original(), tb.ColumnMaxLengths[h.Original()])
-			}
-		}
+	for pn := range tb.Rows {
+		tb.updatePNColLen(pn)
 	}
 
 	content := ""
@@ -321,6 +314,19 @@ func (tb *Table) end(content string) string {
 	content = content[:len(content)-1]
 	content += tb.End
 	return content
+}
+
+func (tb *Table) AdaptColLen(longPN int, shortPN int, adCol string) error {
+	longPNLen := tb.updatePNColLen(longPN)
+	shortPNLen := tb.updatePNColLen(shortPN)
+	if longPNLen <= shortPNLen {
+		return exception.ColLen(longPNLen, shortPNLen)
+	}
+	if tb.Columns[shortPN].Exist(adCol) {
+		tb.ColumnMaxLengths[shortPN][adCol] += (longPNLen - shortPNLen)
+		return nil
+	}
+	return exception.ColumnDoNotExist(adCol)
 }
 
 // Empty method is used to determine whether the table is empty.
@@ -471,6 +477,23 @@ func (tb *Table) XML(indent int) string {
 	contents = append(contents, "</table>")
 	content := strings.Join(contents, "\n")
 	return content
+}
+
+func (tb *Table) updatePNColLen(pn int) int {
+	row := tb.Rows[pn]
+	for _, data := range row {
+		for _, h := range tb.Columns[pn].base {
+			maxLength := max(h.Length(), data[h.Original()].Length())
+			maxLength = max(maxLength, tb.ColumnMaxLengths[pn][h.Original()])
+			tb.ColumnMaxLengths[pn][h.Original()] = maxLength
+			//fmt.Println(h.Original(), tb.ColumnMaxLengths[h.Original()])
+		}
+	}
+	rowlen := 0
+	for _, h := range tb.ColumnMaxLengths[pn] {
+		rowlen += h
+	}
+	return rowlen
 }
 
 func (tb *Table) CloseBorder() {
