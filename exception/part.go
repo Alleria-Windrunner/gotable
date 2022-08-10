@@ -1,6 +1,8 @@
 package exception
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type PartNumberError struct {
 	*baseError
@@ -18,6 +20,7 @@ type ColLenError struct {
 }
 
 func ColLen(long int, short int) *ColLenError {
-	err := &ColLenError{createBaseError("longLen is %d, shortLen is %d"), long, short}
+	message := fmt.Sprintf("longLen is %d, shortLen is %d", long, short)
+	err := &ColLenError{createBaseError(message), long, short}
 	return err
 }
