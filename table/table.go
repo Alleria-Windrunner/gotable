@@ -190,7 +190,12 @@ func (tb *Table) DelPNRows(partNumber int) error {
 	if len(tb.Rows[partNumber]) == 0 {
 		return exception.NoMoreRow(partNumber)
 	}
+	//clear the rows
 	tb.Rows[partNumber] = tb.Rows[partNumber][:len(tb.Rows[partNumber])-1]
+	//clear the column len
+	for column := range tb.ColumnMaxLengths[partNumber] {
+		tb.ColumnMaxLengths[partNumber][column] = 0
+	}
 	return nil
 }
 
@@ -501,6 +506,16 @@ func (tb *Table) updatePNColLen(pn int) int {
 		rowlen += h + 3
 	}
 	return rowlen
+}
+
+func (tb *Table) GetPNColumnLen(pn int, column string) (int, error) {
+	if pn >= tb.partLen {
+		return 0, exception.PartNumber(pn)
+	}
+	if tb.Columns[pn].Exist(column) {
+		return tb.ColumnMaxLengths[pn][column], nil
+	}
+	return 0, exception.ColumnDoNotExist(column)
 }
 
 func (tb *Table) CloseBorder() {
