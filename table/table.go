@@ -498,7 +498,7 @@ func (tb *Table) updatePNColLen(pn int) int {
 	}
 	rowlen := 0
 	for _, h := range tb.ColumnMaxLengths[pn] {
-		rowlen += h
+		rowlen += h + 3
 	}
 	return rowlen
 }
