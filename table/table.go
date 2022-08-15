@@ -48,7 +48,7 @@ func (tb *Table) Clear() {
 		tb.partLen = 1
 	}
 	tb.Columns[0].Clear()
-	tb.columntag[0] = true
+	tb.columntag[0] = 1
 	tb.ColumnMaxLengths[0] = make(map[string]int, 0)
 	tb.Rows[0] = make([]map[string]cell.Cell, 0)
 }
@@ -220,18 +220,7 @@ func (tb *Table) String() string {
 	tag := make(map[string]cell.Cell)
 	taga := make([]map[string]cell.Cell, 0)
 	border := ""
-	switch tb.border {
-	case 0:
-	case 1:
-		border = "-"
-	case 2:
-		border = "="
-	case 3:
-		border = "~"
-	case 4:
-		border = "+"
-	}
-
+	border = getBorderType(tb.border)
 	for pn, columns := range tb.Columns {
 		for _, h := range columns.base {
 			if length, exist := tb.ColumnMaxLengths[pn][h.Original()]; !(exist && length > h.Length()) {
@@ -292,9 +281,16 @@ func (tb *Table) String() string {
 
 		// input tableValue
 		tableValue := make([]map[string]cell.Cell, 0)
-		if tb.columntag[pn] {
-			tableValue = append(tableValue, tag)
+		// columntag
+		border = getBorderType(tb.columntag[pn])
+		ctag := make(map[string]cell.Cell)
+		for _, h := range tb.Columns[pn].base {
+			ctag[h.String()] = cell.CreateData(border)
 		}
+		if tb.columntag[pn] != 0 {
+			tableValue = append(tableValue, ctag)
+		}
+
 		if !tb.Empty() {
 			for _, row := range rows {
 				value := make(map[string]cell.Cell)
@@ -385,7 +381,7 @@ func (tb *Table) GetPNValues(partNumber int) []map[string]string {
 	return values
 }
 
-func (tb *Table) SetPNColumnsTag(partNumber int, value bool) error {
+func (tb *Table) SetPNColumnsTag(partNumber int, value int8) error {
 	if partNumber >= tb.partLen {
 		return exception.PartNumber(tb.partLen)
 	}
@@ -635,6 +631,21 @@ func (tb *Table) EqualColumns(other *Table) bool {
 		return true
 	}
 	return false
+}
+
+func getBorderType(ty int8) string {
+	switch ty {
+	case 1:
+		return "-"
+	case 2:
+		return "="
+	case 3:
+		return "~"
+	case 4:
+		return "+"
+	default:
+		return ""
+	}
 }
 
 func (tb *Table) SetColumnColor(columnName string, display, fount, background int) {

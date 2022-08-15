@@ -30,7 +30,7 @@ func (s *SafeTable) Clear() {
 		s.partLen = 1
 	}
 	s.Columns[0].Clear()
-	s.columntag[0] = true
+	s.columntag[0] = 1
 	s.ColumnMaxLengths[0] = make(map[string]int, 0)
 	s.Rows[0] = make([]sync.Map, 0)
 }

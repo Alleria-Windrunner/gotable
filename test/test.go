@@ -40,7 +40,7 @@ func main() {
 		return
 	}
 
-	table.SetPNColumnsTag(0, false)
+	table.SetPNColumnsTag(0, 0)
 
 	// Add new part with new columns
 	table.AddPart("name", "salary")
@@ -82,11 +82,14 @@ func main() {
 	fmt.Println(table.GetPNValues(0))
 
 	//change any column length in any part
-	table.SetColumnMaxLength(1, "name", 20)
-	table.SetColumnMaxLength(1, "salary", 14)
-	table.SetColumnMaxLength(2, "name", 20)
-	table.SetColumnMaxLength(2, "salary", 7)
-	table.AdaptColLen(1, 2, "salary")
+	// table.SetColumnMaxLength(1, "name", 15)
+	// table.SetColumnMaxLength(1, "salary", 10)
+	// table.SetColumnMaxLength(2, "name", 30)
+	// table.SetColumnMaxLength(2, "salary", 15)
+	table.AdaptColLen(0, 1, "salary")
+	table.AdaptColLen(1, 2, "name")
+	table.SetBorder(1)
+	table.SetPNColumnsTag(2, 3)
 
 	fmt.Println(table)
 
