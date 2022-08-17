@@ -2,8 +2,11 @@ package main
 
 import (
 	"fmt"
+	"sync"
+	"time"
 
 	"github.com/Alleria-Windrunner/gotable"
+	"github.com/Alleria-Windrunner/gotable/table"
 )
 
 func main() {
@@ -33,12 +36,12 @@ func main() {
 		return
 	}
 
-	row4 := []string{"=", "~", "+"}
-	err = table.AddRow(row4)
-	if err != nil {
-		fmt.Println("Add value to table failed: ", err.Error())
-		return
-	}
+	// row4 := []string{"=", "~", "+"}
+	// err = table.AddRow(row4)
+	// if err != nil {
+	// 	fmt.Println("Add value to table failed: ", err.Error())
+	// 	return
+	// }
 
 	table.SetPNColumnsTag(0, 0)
 
@@ -90,8 +93,17 @@ func main() {
 	table.AdaptColLen(1, 2, "name")
 	table.SetBorder(1)
 	table.SetPNColumnsTag(2, 3)
+	count := 4
+	var wg sync.WaitGroup
+	wg.Add(count)
+	table.End = ""
+	for i := 0; i < count; i++ {
+		time.Sleep(1000 * time.Millisecond)
+		go print(table, &wg)
+	}
+	wg.Wait()
 
-	fmt.Println(table)
+	//fmt.Println(table)
 
 	//table.CloseBorder()
 
@@ -103,4 +115,11 @@ func main() {
 	// | Beijing  | Washington, D.C. |  Paris  |
 	// | Yinchuan |   Los Angeles    | Orleans |
 	// +----------+------------------+---------+
+}
+func print(tb *table.Table, wg *sync.WaitGroup) {
+	tb.SetBorder(0)
+	fmt.Println(tb)
+
+	tb.AddRow([]string{"1", "1"})
+	wg.Done()
 }

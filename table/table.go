@@ -274,10 +274,7 @@ func (tb *Table) String() string {
 
 			content += s
 		}
-
-		if tb.border > 0 {
-			content += "\n"
-		}
+		content += "\n"
 
 		// input tableValue
 		tableValue := make([]map[string]cell.Cell, 0)
@@ -306,8 +303,9 @@ func (tb *Table) String() string {
 		content += tb.printGroup(pn, tableValue)
 	}
 
-	content += tb.printGroup(tb.partLen-1, taga)
-
+	if tb.border != 0 {
+		content += tb.printGroup(tb.partLen-1, taga)
+	}
 	return tb.end(content)
 }
 
@@ -498,8 +496,14 @@ func (tb *Table) updatePNColLen(pn int) int {
 		}
 	}
 	rowlen := 0
-	for _, h := range tb.ColumnMaxLengths[pn] {
-		rowlen += h + 3
+	if tb.border != 0 {
+		for _, h := range tb.ColumnMaxLengths[pn] {
+			rowlen += h + 3
+		}
+	} else {
+		for _, h := range tb.ColumnMaxLengths[pn] {
+			rowlen += h
+		}
 	}
 	return rowlen
 }
