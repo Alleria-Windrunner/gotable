@@ -10,7 +10,8 @@ package table
 type base struct {
 	partLen          int
 	Columns          []*Set
-	columntag        []int8
+	titleLine        []int8
+	hidePartTitle    []bool
 	ColumnMaxLengths []map[string]int
 	border           int8
 	tableType        string
@@ -21,7 +22,8 @@ func createTableBase(columns *Set, tableType string, border int8) *base {
 	b := new(base)
 	b.partLen = 1
 	b.Columns = append(b.Columns, columns)
-	b.columntag = []int8{1}
+	b.titleLine = []int8{1}
+	b.hidePartTitle = []bool{false}
 	b.ColumnMaxLengths = append(b.ColumnMaxLengths, make(map[string]int))
 	b.tableType = tableType
 	b.border = border
@@ -31,7 +33,8 @@ func createTableBase(columns *Set, tableType string, border int8) *base {
 
 func (b *base) addTableBase(columns *Set) error {
 	b.Columns = append(b.Columns, columns)
-	b.columntag = append(b.columntag, 1)
+	b.titleLine = append(b.titleLine, 1)
+	b.hidePartTitle = append(b.hidePartTitle, false)
 	b.ColumnMaxLengths = append(b.ColumnMaxLengths, make(map[string]int))
 	b.partLen++
 	return nil

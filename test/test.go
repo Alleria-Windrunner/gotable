@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"sync"
-	"time"
 
 	"github.com/Alleria-Windrunner/gotable"
 	"github.com/Alleria-Windrunner/gotable/table"
@@ -11,18 +10,15 @@ import (
 
 func main() {
 	fmt.Println("sss")
-	table, err := gotable.Create("China", "US", "French")
-	if err != nil {
-		fmt.Println("Create table failed: ", err.Error())
-		return
-	}
+	rowtop := []string{"China", "US", "French"}
+	table, _ := gotable.Create(rowtop...)
 
 	// Use map
 	row := make(map[string]string)
 	row["China"] = "Beijing"
 	row["US"] = "Washington, D.C."
 	row["French"] = "Paris"
-	err = table.AddRow(row)
+	err := table.AddRow(row)
 	if err != nil {
 		fmt.Println("Add value to table failed: ", err.Error())
 		return
@@ -43,7 +39,7 @@ func main() {
 	// 	return
 	// }
 
-	table.SetPNColumnsTag(0, 0)
+	table.SetPNTitleLine(0, 0)
 
 	// Add new part with new columns
 	table.AddPart("name", "salary")
@@ -92,16 +88,20 @@ func main() {
 	table.AdaptColLen(0, 1, "salary")
 	table.AdaptColLen(1, 2, "name")
 	table.SetBorder(1)
-	table.SetPNColumnsTag(2, 3)
+	table.SetPNTitleLine(2, 3)
+	table.GetPNColumns(1)
 	count := 4
 	var wg sync.WaitGroup
 	wg.Add(count)
 	table.End = ""
-	for i := 0; i < count; i++ {
-		time.Sleep(1000 * time.Millisecond)
-		go print(table, &wg)
-	}
-	wg.Wait()
+	table.SetPNTitleHide(2, true)
+	fmt.Println(table)
+	// delay := 1000
+	// for i := 0; i < count; i++ {
+	// 	time.Sleep(time.Duration(delay) * time.Millisecond)
+	// 	go print(table, &wg)
+	// }
+	// wg.Wait()
 
 	//fmt.Println(table)
 

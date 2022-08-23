@@ -43,12 +43,14 @@ func (tb *Table) Clear() {
 	if tb.partLen != 1 {
 		tb.Columns = append(tb.Columns[0:1])
 		tb.Rows = append(tb.Rows[0:1])
-		tb.columntag = append(tb.columntag[0:1])
+		tb.titleLine = append(tb.titleLine[0:1])
+		tb.hidePartTitle = append(tb.hidePartTitle[0:1])
 		tb.ColumnMaxLengths = append(tb.ColumnMaxLengths[0:1])
 		tb.partLen = 1
 	}
 	tb.Columns[0].Clear()
-	tb.columntag[0] = 1
+	tb.titleLine[0] = 1
+	tb.hidePartTitle[0] = false
 	tb.ColumnMaxLengths[0] = make(map[string]int, 0)
 	tb.Rows[0] = make([]map[string]cell.Cell, 0)
 }
@@ -271,20 +273,24 @@ func (tb *Table) String() string {
 			} else {
 				s = "" + s + icon
 			}
+			if !tb.hidePartTitle[pn] {
+				content += s
+			}
 
-			content += s
 		}
-		content += "\n"
+		if !tb.hidePartTitle[pn] {
+			content += "\n"
+		}
 
 		// input tableValue
 		tableValue := make([]map[string]cell.Cell, 0)
 		// columntag
-		border = getBorderType(tb.columntag[pn])
+		border = getBorderType(tb.titleLine[pn])
 		ctag := make(map[string]cell.Cell)
 		for _, h := range tb.Columns[pn].base {
 			ctag[h.String()] = cell.CreateData(border)
 		}
-		if tb.columntag[pn] != 0 {
+		if tb.titleLine[pn] != 0 {
 			tableValue = append(tableValue, ctag)
 		}
 
@@ -379,11 +385,24 @@ func (tb *Table) GetPNValues(partNumber int) []map[string]string {
 	return values
 }
 
-func (tb *Table) SetPNColumnsTag(partNumber int, value int8) error {
+func (tb *Table) SetPNTitleLine(partNumber int, value int8) error {
 	if partNumber >= tb.partLen {
 		return exception.PartNumber(tb.partLen)
 	}
-	tb.columntag[partNumber] = value
+	tb.titleLine[partNumber] = value
+	return nil
+}
+
+func (tb *Table) SetTitleHide(ishide bool) error {
+	return tb.SetPNTitleHide(tb.partLen-1, ishide)
+}
+
+func (tb *Table) SetPNTitleHide(partNumber int, ishide bool) error {
+	if partNumber >= tb.partLen {
+		return exception.PartNumber(tb.partLen)
+	}
+	tb.hidePartTitle[partNumber] = ishide
+	tb.titleLine[partNumber] = 0
 	return nil
 }
 
