@@ -44,13 +44,13 @@ func (tb *Table) Clear() {
 		tb.Columns = append(tb.Columns[0:1])
 		tb.Rows = append(tb.Rows[0:1])
 		tb.titleLine = append(tb.titleLine[0:1])
-		tb.hidePartTitle = append(tb.hidePartTitle[0:1])
+		tb.fillPartTitle = append(tb.fillPartTitle[0:1])
 		tb.ColumnMaxLengths = append(tb.ColumnMaxLengths[0:1])
 		tb.partLen = 1
 	}
 	tb.Columns[0].Clear()
 	tb.titleLine[0] = 1
-	tb.hidePartTitle[0] = false
+	tb.fillPartTitle[0] = 0
 	tb.ColumnMaxLengths[0] = make(map[string]int, 0)
 	tb.Rows[0] = make([]map[string]cell.Cell, 0)
 }
@@ -260,25 +260,29 @@ func (tb *Table) String() string {
 				itemLen += 2
 			}
 			s := ""
+			fillPart := " "
+			if 0 < tb.fillPartTitle[pn] && tb.fillPartTitle[pn] <= 4 {
+				fillPart = getBorderType(tb.fillPartTitle[pn])
+			}
 			switch head.Align() {
 			case R:
-				s, _ = right(head, itemLen, " ")
+				s, _ = right(head, itemLen, fillPart)
 			case L:
-				s, _ = left(head, itemLen, " ")
+				s, _ = left(head, itemLen, fillPart)
 			default:
-				s, _ = center(head, itemLen, " ")
+				s, _ = center(head, itemLen, fillPart)
 			}
 			if index == 0 {
 				s = icon + s + icon
 			} else {
 				s = "" + s + icon
 			}
-			if !tb.hidePartTitle[pn] {
+			if tb.fillPartTitle[pn] >= 0 {
 				content += s
 			}
 
 		}
-		if !tb.hidePartTitle[pn] {
+		if tb.fillPartTitle[pn] >= 0 {
 			content += "\n"
 		}
 
@@ -401,8 +405,20 @@ func (tb *Table) SetPNTitleHide(partNumber int, ishide bool) error {
 	if partNumber >= tb.partLen {
 		return exception.PartNumber(tb.partLen)
 	}
-	tb.hidePartTitle[partNumber] = ishide
+	if ishide {
+		tb.fillPartTitle[partNumber] = -1
+	} else {
+		tb.fillPartTitle[partNumber] = 0
+	}
 	tb.titleLine[partNumber] = 0
+	return nil
+}
+
+func (tb *Table) SetPNTitleFill(partNumber int, fillpart int8) error {
+	if partNumber >= tb.partLen {
+		return exception.PartNumber(tb.partLen)
+	}
+	tb.fillPartTitle[partNumber] = fillpart
 	return nil
 }
 

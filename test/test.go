@@ -89,12 +89,14 @@ func main() {
 	table.AdaptColLen(1, 2, "name")
 	table.SetBorder(1)
 	table.SetPNTitleLine(2, 3)
-	table.GetPNColumns(1)
-	count := 4
-	var wg sync.WaitGroup
-	wg.Add(count)
-	table.End = ""
-	table.SetPNTitleHide(2, true)
+	//table.GetPNColumns(1)
+	// count := 4
+	// var wg sync.WaitGroup
+	// wg.Add(count)
+	// table.End = ""
+	table.SetPNTitleFill(1, 1)
+	table.SetPNTitleLine(1, 0)
+	//table.SetPNTitleHide(2, false)
 	fmt.Println(table)
 	// delay := 1000
 	// for i := 0; i < count; i++ {
